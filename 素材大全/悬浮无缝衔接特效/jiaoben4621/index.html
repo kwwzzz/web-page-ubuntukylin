@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery无缝图片渐变切换代码 - 站长素材</title>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	a{text-decoration: none;color: #000;}
+	body{font-size: 14px;font-family: Arial,'微软雅黑';background: #2c2c2c;}
+	ul{list-style: none;}
+	.box{width: 346px;height: 300px;margin: 200px auto 0;overflow: hidden;position: relative;}
+	.box_img{width: 346px;height: 250px;overflow: hidden;}
+	.box_img ul li{position: absolute;display: none;}
+	.box_img ul li a{display: block;width: 346px;height: 250px;font-size: 100px;text-align: center;line-height: 250px;color: #fff;}
+	
+	.box_tab{position: absolute;bottom: 0;text-align: center;width: 346px}
+	.box_tab a{display: inline-block;padding: 2px 10px;font-size: 10px;background: #fff;margin: 0 5px;color: #333;}
+	.box_tab a.active{background: #09b;color: #fff;}
+</style>
+
+</head>
+<body>
+
+<div class="box">
+	<div class="box_img">
+		<ul>
+			<li><a href="#" style="background: #f90;">1</a></li>
+			<li><a href="#" style="background: #f09;">2</a></li>
+			<li><a href="#" style="background: #0f9;">3</a></li>
+			<li><a href="#" style="background: #90f;">4</a></li>
+			<li><a href="#" style="background: #09f;">5</a></li>
+			<li><a href="#" style="background: #f90;">6</a></li>
+			<li><a href="#" style="background: #f09;">7</a></li>
+			<li><a href="#" style="background: #0f9;">8</a></li>
+			<li><a href="#" style="background: #90f;">9</a></li>
+		</ul>
+	</div>
+	<div class="box_tab"></div>
+</div>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var timejg=3000;//轮播间隔时间
+		var size = $('.box_img ul li').size();
+		for(var i=1;i<=size;i++){
+			$('.box_tab').append('<a href="javascript:(void)">'+i+'</a>')
+		}
+
+		$('.box_img ul li').eq(0).show();
+		$('.box_tab a').eq(0).addClass('active')
+		$('.box_tab a').mouseover(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			var index = $(this).index();
+			i=index;
+			$('.box_img ul li').eq(index).stop().fadeIn(300).siblings().stop().fadeOut(300);
+		});
+
+		var i = 0;
+		var time = setInterval(move,timejg);
+
+		function move(){
+			i++;
+			if(i==size){
+				i=0;
+			}
+
+			$('.box_tab a').eq(i).addClass('active').siblings().removeClass('active');
+			$('.box_img ul li').eq(i).fadeIn(300).siblings().fadeOut(300);
+		}
+
+		$('.box').hover(function(){
+			clearInterval(time);
+		},function(){
+			time = setInterval(move,timejg);
+		});
+	});
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#ffffff">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

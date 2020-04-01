@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Design按钮点击波特效 - 站长素材</title>
+
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/zzsc.css">
+<style type="text/css">
+	.ripple-container {
+		}
+		.ripple-container .ripple{
+			background-color: rgba(255,255,255,0.4);
+			animation: ripple 2s forwards cubic-bezier(0, 0, 0.2, 1);
+		}
+		@keyframes ripple {
+			0% {
+				transform: scale(0);
+				opacity: 1;
+			}
+			80% {
+				transform: scale(1);
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		button {
+			background-color: dodgerblue;
+			color: white;
+			padding: 10px 20px;
+			border:0;
+			font-size: 14px;
+			cursor: pointer
+		}
+</style>
+
+</head>
+<body>
+<br><br><br><br><br>
+<div class="zzsc-content">
+	<!-- we just added data-ripple attribute -->
+	<button data-ripple>
+		Demo button 1
+	</button>
+	<button data-ripple>
+		Demo button 2
+	</button>
+	<button data-ripple>
+		Demo button 3
+	</button>
+	<button data-ripple>
+		Demo button 4
+	</button>
+	<button data-ripple>
+		Demo button 5
+	</button>
+</div>
+
+<script src="js/ripple.js"></script>
+<script type="text/javascript">
+	// just add effect to elements
+		Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
+			// find all elements and attach effect
+			new RippleEffect(element); // element is instance of javascript element node
+		});
+</script>
+
+<div style="text-align:center;margin:100px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

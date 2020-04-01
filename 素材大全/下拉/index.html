@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--width：控制 viewport 的大小，可以指定的一个值，如果 600，或者特殊的值，如 device-width 为设备的宽度（单位为缩放为 100% 时的 CSS 的像素）。
+		height：和 width 相对应，指定高度。
+		initial-scale：初始缩放比例，也即是当页面第一次 load 的时候缩放比例。
+		maximum-scale：允许用户缩放到的最大比例。
+		minimum-scale：允许用户缩放到的最小比例。
+		user-scalable：用户是否可以手动缩放-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>基于vue的下拉菜单</title>
+		<style>
+			.title {
+				line-height: 0.9rem;
+				font-size: 0.32rem;
+				color: #1b1b1b;
+				padding: 0 0.24rem;
+				position: relative;
+				border-bottom: 1px solid #efefef;
+			}
+			
+			.title .icon {
+				position: absolute;
+				right: 0.24rem;
+				top: 50%;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+				width: 0.24rem;
+				display: block;
+				transition: 0.5s;
+			}
+			
+			.queueItem.active .title .icon {
+				-webkit-transform: translateY(-50%) rotateZ(-180deg);
+				transform: translateY(-50%) rotateZ(-180deg);
+			}
+			
+			.answer {
+				height: 0;
+				transition: height 0.5s;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			
+			.answer>div {
+				padding: 0.4rem 0.24rem;
+				font-size: 0.3rem;
+				color: #9a9a9a;
+				line-height: 0.42rem;
+				border-bottom: 1px solid #efefef;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="questions">
+			<div class="queueItem" v-for="(item,index) of list" :key="index" @click="titleClick(index)" :class="item.open?'active':''">
+				<div class="
+      title">
+					{{item.question}}
+					<img src="img/slide_icon.png" class="icon">
+				</div>
+				<div class="answer" :id="item.pid" v-if="item.open != null">
+					<div>{{item.answer}}</div>
+				</div>
+				<div class="answer" v-else>
+					<div>{{item.answer}}</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: "#questions",
+				data: {
+					defaultOp: -1,
+					title: "",
+					list: []
+				},
+				mounted: function() {
+					this.getData();
+				},
+				methods: {
+					getData: function() {
+						var that = this;
+						var info = {
+							"title": "常见问题",
+							"list": [{
+								"id": 1,
+								"question": "XXXX是什么？",
+								"answer": "XXXX平台致力于打造一款新形式的漫画阅读软件，以读者、作者、平台多方共赢的方式。以移动应用为主进行内容制作、漫画阅读，提供更有用、更有内涵的漫画内容给大家。",
+								"type": 3,
+								"createTime": 1553844099000,
+								"updateTime": 1560339785000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 2,
+								"question": "XXXX为什么会给你奖励？",
+								"answer": "为了引领全民阅读漫画，帮助大家认识漫画并养成良好的漫画阅读习惯，在阅读漫画的过程中，采用先进的算法根据您的阅读时长计算出对应的金币，金币可以手动转换成现金，让您在欣赏、阅读漫画的同时还能有所收益。",
+								"type": 3,
+								"createTime": 1553844182000,
+								"updateTime": 1560339766000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 3,
+								"question": "邀请好友有什么好处？",
+								"answer": "邀请好友即为收徒，可以让您的收益迅速增加，现在每成功邀请一位好友可获得28.88元现金奖励，还可以免费看付费漫画（好友当日累计获得1500金币，您将获得对应的奖励，奖励一共分5次发放），而且好友获得的金币越多，您收到的金币提成越多！",
+								"type": 3,
+								"createTime": 1553844212000,
+								"updateTime": 1558010920000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 4,
+								"question": "XX币是什么？",
+								"answer": "XX币是在XXXX平台购买付费漫画的一种虚拟货币，该货币只能通过充值获得，平台统一兑换标准1元=100XX币。",
+								"type": 3,
+								"createTime": 1553844239000,
+								"updateTime": 1560339755000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 5,
+								"question": "为什么苹果充值和安卓充值得到的XX币不一样？",
+								"answer": "根据苹果官方相关手续费扣除规定，平台将苹果端充值的比例调整为1元=50XX币，不过平台会额外赠送50%的阅读券做为补偿。",
+								"type": 3,
+								"createTime": 1553844270000,
+								"updateTime": 1561704945000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 6,
+								"question": "阅读券是什么？",
+								"answer": "阅读券是XXXX平台发行的一种福利券，阅读券和XX币等值，阅读券可以用来购买付费漫画，小提示：观看付费漫画时，系统会优先扣除阅读券，阅读券和XX币不能同时使用。",
+								"type": 3,
+								"createTime": 1553844292000,
+								"updateTime": 1561705424000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 7,
+								"question": "阅读券怎么获得？",
+								"answer": "阅读券可以通过充值赠送活动获得，也可以通过平台定期举行的活动赠送，请多关注平台的活动哦，小提示：阅读券是有有效期的，获得后请尽快使用。",
+								"type": 3,
+								"createTime": 1553844398000,
+								"updateTime": 1561982160000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 8,
+								"question": "金币是什么？",
+								"answer": "金币是XXXX福利体系的货币单位，目前仅可以用来兑换成现金红包，更多惊喜兑换商品还在陆续上架中，敬请期待！",
+								"type": 3,
+								"createTime": 1553844421000,
+								"updateTime": 1560339637000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 9,
+								"question": "如何获得金币？",
+								"answer": "邀请新朋友加入XXXX、每日签到、邀请好友、晒收入、做任务，即可赚取金币（详细可以到「任务」栏目查看可赚取金币的全部任务）。",
+								"type": 3,
+								"createTime": 1553844447000,
+								"updateTime": 1560339663000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 10,
+								"question": "金币需要手动获取吗？",
+								"answer": "下载最新版XXXX，通过任务赚取的金币自动发放（除首页在线任务）；首页在线任务领取时间为每日24点前，超过24点未领取的金币将被自动清空。",
+								"type": 3,
+								"createTime": 1553844505000,
+								"updateTime": 1560339628000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 11,
+								"question": "金币与人民币如何折算？",
+								"answer": "金币价值与人民币价值有一定折算比例，随着平台收益情况会发生变化，现阶段为10000金币=1元人民币。",
+								"type": 3,
+								"createTime": 1553844530000,
+								"updateTime": 1553844530000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 12,
+								"question": "签到是什么？",
+								"answer": "签到是获取金币的一种方式，通过每一轮七天周期的签到获取大量的金币，也可以获得一定的阅读卡哦，连续签到奖励必须每日连续签到才可获得，断签后需从第一天重新签到。",
+								"type": 3,
+								"createTime": 1553844552000,
+								"updateTime": 1558011221000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 13,
+								"question": "如何邀请他人加入XXXX（邀请好友）？",
+								"answer": "XXXXAPP提供多种方式邀请收徒（您可以分享给您的微信好友、朋友圈、QQ好友）。注: 被邀请者必须是第一次下载并登录XXXXAPP的新用户，严禁任何套取推荐奖励的行为。",
+								"type": 3,
+								"createTime": 1553844575000,
+								"updateTime": 1560339616000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 14,
+								"question": "怎样建立绑定关系?",
+								"answer": "被邀请者通过您分享的链接页面通过QQ或微信授权登录，打开XXXXAPP通过该QQ或微信登录即可成功绑定，注：每个设备只能被邀请一次",
+								"type": 3,
+								"createTime": 1553844604000,
+								"updateTime": 1560339605000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 15,
+								"question": "邀请好友可获得多少奖励？如何发放？",
+								"answer": "每成功邀请一位好友可获得28.88元现金及好友每天阅读金币收益的20%，还可免费看漫画1小时。  (1) 好友安装并登录XXXXAPP建立邀请关系后，只要好友当日累计获得1500金币时，您将立即收到对应的现金奖励； (2) 好友完成他的福利任务后，您将再收到好友金币收益20%的奖励，您可在「我的邀请」页看到朋友是否完成任务；注：如果邀请好友经系统判定存在异常行为，邀请奖励不能正常发放，XXXX禁止一切作弊行为。",
+								"type": 3,
+								"createTime": 1553844628000,
+								"updateTime": 1560339596000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 16,
+								"question": "宝箱是什么？",
+								"answer": "XXXXAPP首页右下角有倒计时宝箱，倒计时完成后可以领取宝箱内的金币，如果您未登录、锁屏、退出APP倒计时就会停止，您将无法领取奖励。",
+								"type": 3,
+								"createTime": 1553844660000,
+								"updateTime": 1560339579000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 17,
+								"question": "看广告赚金币是什么？",
+								"answer": "XXXX平台提倡用户养成阅读的好习惯，休息一下，看个视频广告，还能额外获得金币，每天可以获得20次。",
+								"type": 3,
+								"createTime": 1553844684000,
+								"updateTime": 1560339573000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 18,
+								"question": "玩游戏是什么？",
+								"answer": "玩一些趣味小游戏可以获得金币，每天游戏得分最高的前5名，将获得巨额奖励，奖励自动发放。",
+								"type": 3,
+								"createTime": 1553844704000,
+								"updateTime": 1553844704000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 19,
+								"question": "晒收入是什么？",
+								"answer": "将您在XXXXAPP平台获得的收益，分享给朋友或朋友圈炫耀一下的同时，还可以提高邀请的成功率。",
+								"type": 3,
+								"createTime": 1553844726000,
+								"updateTime": 1560339567000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 20,
+								"question": "膜拜土豪是什么？",
+								"answer": "XXXXAPP会根据用户收徒的人数及收入来进行排名，前三名可以被所有用户膜拜，膜拜的人都可以获得金币奖励，每日最多可膜拜三次。",
+								"type": 3,
+								"createTime": 1553844743000,
+								"updateTime": 1560339558000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 21,
+								"question": "提现为什么要绑定微信？",
+								"answer": "根据微信官方提供的转账到个人的要求建议，用户需要绑定正确的微信账号信息我们才能将现金转入您的账户。",
+								"type": 3,
+								"createTime": 1553844761000,
+								"updateTime": 1556613907000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 23,
+								"question": "绑定微信后可以更改吗？",
+								"answer": "系统为了您账户的安全考虑，微信账户一旦和您的账号绑定，将无法更改。",
+								"type": 3,
+								"createTime": 1553844846000,
+								"updateTime": 1556613713000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 24,
+								"question": "提现多久到账？",
+								"answer": "提现申请提交后，2个工作日内审核到账，如果审核发现有作弊行为，本平台有权利直接扣除提现金钱，并封禁账号！",
+								"type": 3,
+								"createTime": 1553844872000,
+								"updateTime": 1553844872000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 25,
+								"question": "作弊说明",
+								"answer": "如发现用户有作弊行为，将对其账号进行封禁，封禁期间仍然可以阅读漫画，但是不能获得金币奖励（任务奖励、好友奖励），也无法提现。 请维护良好的漫画阅读环境，杜绝任何刷机行为！",
+								"type": 3,
+								"createTime": 1553844895000,
+								"updateTime": 1558011575000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}, {
+								"id": 27,
+								"question": "什么是垃圾评论",
+								"answer": " 1、单字连续重复的 (如：666、好好好好好、哈哈哈哈哈哈...等)； 2、词组或句子连续重复的 (如：鼓掌鼓掌，很好很好等)； 3、火星文或不知所谓看不懂的（如：吙煋呅，撒的他依氺会，...等)； 4、违规广告文字、网站名称、网址链接等； 5、违规电话、微信、QQ号等联系方式； 希望小伙伴们可以共同维护XXXX的互动环境哟~",
+								"type": 3,
+								"createTime": 1562754616000,
+								"updateTime": 1562754616000,
+								"status": 0,
+								"enumQuestionAnswerType": "PAGE_MY_HOME_COMMON_PROBLEM"
+							}]
+
+						}
+
+						if(info.list) {
+							var list = info.list;
+							var arr = [];
+							for(var i = 0; i < list.length; i++) {
+								var obj = list[i];
+								obj["open"] = null;
+								obj["pid"] = "itemPId" + i;
+								arr.push(obj);
+							}
+							that.list = arr;
+						}
+
+					},
+					titleClick: function(index) {
+						var obj = this.list[index];
+						obj.open = !obj.open;
+						this.list[index] = obj;
+						setTimeout(function() {
+							var pid = "itemPId" + index;
+							var pdom = document.getElementById(pid);
+							console.log(pdom)
+							if(obj.open) {
+								pdom.style.height = pdom.scrollHeight + "px";
+							} else {
+								pdom.style.height = 0;
+							}
+						}, 1);
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

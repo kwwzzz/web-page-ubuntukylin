@@ -1,0 +1,671 @@
+
+	<script type="text/javascript" src="/home/kevin/桌面/page-pic/page-pic.js"></script>
+	<link rel="stylesheet" type="text/css" href="/home/kevin/桌面/page-pic/page-pic.css"></style>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+	body{
+		margin: 0px;
+		padding: 0px;
+	}
+	li{
+		list-style: none;
+		float: left;
+	}
+	.page{
+		height: 0;
+		padding: 0px;
+		margin: 0px;		
+	}
+	.blackpic{
+		width: 100%;
+		height: 680px;
+		padding: 0px;
+		margin: 0px;
+		position: absolute;
+		z-index: 50;
+		background: rgba(0,0,0,0.2);
+	}
+	.blackpic span{
+		width: 100%;
+		height: 54px;
+		font-size: 55px;
+		font-family: MicrosoftYaHei-Bold;
+		font-weight:bold;
+		display: block;
+		color: white;
+		text-align: center;	
+		margin-top: 300px;
+	}
+	.blackpic h3{
+		width: 100%;
+		height: 34px;
+		font-size: 32px;
+		font-family: MicrosoftYaHei-Bold;
+		font-weight:400;
+			display: block;
+		color: white;
+		text-align:center;	
+	}
+	.blackpic h5{
+		width: 200px;
+		height: 30px;
+		font-size: 16px;
+		font-family: MicrosoftYaHei-Bold;
+		font-weight: 400px;
+		line-height: 30px;
+		display: block;
+		border-radius: 15%;
+		text-align: center;
+		background: white;
+		color: black;
+		margin: 0 auto;
+	}
+	.blackpic:hover{
+		background: rgba(0,0,0,0);
+	}
+
+
+
+	.page-pic1{
+		width: 100%;
+		height: 680px;
+		margin-bottom: 20px;
+		background: #ffff00;
+	}
+	.page-pic2{
+		width: 100%;
+		height:680px;
+		margin-bottom: 20px;
+		background: #00ff00;		
+	}
+	.page-pic3{
+		width: 50%;
+		height:350px;
+		background: #00ffff;
+		float: left;
+	}
+	.page-pic4{
+		width: 50%;
+		height:350px;
+		background: #ff0000;
+		float: left;
+	}
+
+
+	.img1{
+		width: 100%;
+		height: 680px;
+		float: left;
+		position: absolute;
+		z-index: 49
+	}
+	.img2{
+		width: 100%;
+		height: 680px;
+		float: left;
+		position: absolute;
+		z-index: 48
+	}
+	.img3{
+		width: 100%;
+		height: 680px;
+		float: left;
+		position: absolute;
+		z-index: 47
+	}
+
+
+
+	.view{
+	 	position:fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.9);
+		display: none;
+		z-index: 1000;
+	}
+	.view-close{
+		width: 42px;
+		height: 42px;
+		right: 16px;
+		margin-top: 20px;
+		cursor: pointer;
+		background:rgba(0,0,0,0.5);
+		position: fixed;
+		z-index: 1010;
+	}
+	.close{
+		position:relative;
+		width:0.2em;
+		height:3em;
+		left: 20px;
+		bottom: 2px;
+		background: white;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		transform: rotate(45deg);
+		display: inline-block;
+	}
+	.close:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width:0.2em;
+		height:3em;
+		background: white;
+		-webkit-transform: rotate(270deg);
+		-moz-transform: rotate(270deg);
+		-o-transform: rotate(270deg);
+		-ms-transform: rotate(270deg);
+		transform: rotate(270deg);
+	} 
+	#view1{
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: relative;
+		z-index: 1001;
+	}
+	#view2{
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: relative;
+		z-index: 1001s;
+	}
+
+
+
+	#conts{
+		width: 100%;
+		height: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+	.imms a{position: absolute;width: 100%}
+	.btns{
+		width: 100%;
+		height: 250px;
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		z-index: 9999;
+		margin-top: 650px;
+		opacity: 0;
+		transition: opacity 0.5s ease 0s;
+	}
+	.boxul{
+		height: 100%;
+		width: 900px;
+		margin-left: 300px;
+		text-align: center;
+		overflow: hidden;
+		position: absolute;		
+	}
+	.meg span{
+		color: white;
+		text-align: left;
+	}
+	.meg h5{
+		color: white;
+		text-align: left;
+		margin: 0px;
+		width: 80%;
+	}
+	.meg a{
+		color: white;
+		display: block;
+		float: left;
+		text-decoration: none;
+		background: blue;
+	}
+	.btns ul {
+		bottom: 10px;
+		left: 200px;
+		width: 150vw;
+		height: 135px;
+		transform:translateX(0px);
+		transition:all 1s;
+	}
+	.btns ul li{
+		width: 216px;
+		height: 135px;
+		background-color: rgba(204,204,204,0.8);
+		list-style: none;
+		float: left;
+		margin: 0 5px;
+		text-align: center;
+		color: rgba(204,204,204,0.00001);
+		line-height: 12px;
+		cursor: pointer;
+		float: left;
+	}                                                           
+	.btns ul li.ons{
+		background-color: rgba(0,110,173,0.8);
+		color: rgba(0,110,173,0.00001);
+	}
+	#jiao{
+		width: 1582px;
+		display:block;
+	}
+	#left{
+	   width: 35px;
+	   height: 50px;
+	   background-color: rgba(0,0,0,0.8);
+	   opacity: 0.6;
+	   z-index: 9999;
+	   display: block;
+	   position: absolute;
+	   margin-top: 350px;
+	   margin-left: 0px;
+	   color: white;
+	   font-size: 20px;
+	   line-height: 50px;
+	   text-align: center;
+	   text-decoration: none;
+	}
+	#right{
+		width: 35px;
+		height: 50px;
+		background-color: rgba(0,0,0,0.8);
+		opacity: 0.6;
+		z-index: 9999;
+		display: block;
+		position: absolute;
+		margin-top: 350px;
+		right: 0px;
+		color: white;
+		font-size: 20px;
+		line-height: 50px;
+		text-align: center;
+		text-decoration: none;
+	}
+	.imms img{
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+	<script>
+	//控制进入全屏界面退出全片界面
+	 $(document).ready(function(){		
+	 	$(".page div").click(function(){
+	 		var pid = $(this).attr("pid");
+	 		$(".view").show();
+			$("#view"+pid).show();
+	 		$(".view-close").click(function(){
+	 			$(".view").hide();
+				$("#view"+pid).hide();
+	 		});			
+		});
+	});
+	</script>
+	<script>
+		//进入全屏
+		function fullScreen(){
+	        var el = document.documentElement;
+	        var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+	        if(typeof rfs != "undefined" && rfs) {
+	            rfs.call(el);
+	        };
+	        document.getElementById("view").style.display = "block";
+	        document.getElementById("page").style.display = "none";
+
+	    }
+
+        //退出全屏
+        function exitScreen(){
+            if (document.exitFullscreen) {  
+                document.exitFullscreen();  
+            }  
+            else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+            }  
+            else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+            }  
+            else if (document.msExitFullscreen) {  
+                document.msExitFullscreen();  
+            } 
+            if(typeof cfs != "undefined" && cfs) {
+                cfs.call(el);
+            }
+            document.getElementById("view").style.display = "none";
+	        document.getElementById("page").style.display = "block";
+        }
+        //
+			var tt=null;
+			var kkk;
+			var n=0;
+			var timer=0;
+			var tts=null;
+			var kks;
+			var m=0;
+			var timers=0;
+
+			function run(){
+				var li=document.getElementById("btn").getElementsByTagName("li");
+				kkk=document.getElementById("pic").getElementsByTagName("a");
+					for(var i=0;i<kkk.length;i++){
+						if(i!=0){
+							kkk[i].style.opacity=0;
+						}
+					}
+				for(var j=0;j<li.length;j++){
+					li[j].onmouseover=function(){
+						var that=this;
+						tt=setTimeout(function(){ var index=that.innerHTML-1;
+							n=index;
+							if(index <kkk.length){
+								for(var o=0;o<li.length;o++){
+									li[o].className="";
+									kkk[o].style.opacity=0;
+									kkk[o].style.zIndex=98;
+								}
+							that.className="on";
+							kkk[index].style.opacity=1;
+							kkk[index].style.zIndex=99;
+							kkk[index].style.transition="opacity 0.3s";
+				 		    leftf(-300,0,kkk[index]);
+							}
+						},100);
+					};
+					li[j].onmouseout=function(){
+						clearTimeout(tt)
+					}
+			}
+
+			var body=document.getElementById("cont");
+
+			timer = setInterval("autoplay()",5000);
+			body.onmouseover=function(){
+			clearInterval(timer);
+			};
+			body.onmouseout=function(){
+			timer = setInterval("autoplay()",5000);
+			};
+			left.onclick=function(){
+			if(n>0){
+			n--
+			}else if(n==0){
+			n=kkk.length-1;
+			}
+			li[n].onmouseover()
+			};
+			right.onclick=function(){
+			n=n>=(kkk.length-1)?0:++n;
+			li[n].onmouseover()
+			}
+			return 0;
+			};
+
+			function autoplay(){
+			n=n>=(kkk.length-1)?0:++n;
+			var li=document.getElementById("btn").getElementsByTagName("li");
+			li[n].onmouseover()
+			}
+
+			function picstart(){
+				alert("1");
+				
+			}
+
+			function picover(){
+				alert("2");
+			}
+
+			//全屏后功能控制
+			var lis=document.getElementById("btns").getElementsByTagName("li");
+			kks=document.getElementById("imms").getElementsByTagName("a");
+
+			for(var z=0;z<lis.length;z++){
+				lis[z].onclick=function(){
+					
+					var that=this;
+					tts=setTimeout(function(){ 
+						var index=that.innerHTML-1;
+						// alert(that.innerHTML-1);
+						document.getElementById("ul").style.transform = "translateX("+index*-216+"px)";
+						m=index;
+						if(index <kks.length){
+							for(var x=0;x<lis.length;x++){
+								lis[x].className="";
+								kks[x].style.opacity=0;
+								kks[x].style.zIndex=9998;
+							}
+							that.className="ons";
+							kks[index].style.opacity=1;
+							kks[index].style.zIndex=9999;
+							kks[index].style.transition="opacity 0.3s";
+							   leftf(-300,0,kks[index]);
+
+						}
+					},100);
+				};
+
+			}
+			
+
+
+			var lefts=document.getElementById("left");
+			var rights=document.getElementById("right");
+			var jiaos=document.getElementById("jiao");
+			var bodys=document.getElementById("conts");
+			var lists=document.getElementById("list");
+			var click;
+
+			function now() {
+				// body...
+
+				click = document.getElementById('ul').style.transform;
+				return click;
+			}
+
+			bodys.onmouseover=function(){
+				jiaos.style.display="block";
+				clearInterval(timers);
+			};
+			bodys.onmouseout=function(){
+				jiaos.style.display="none";
+			};
+			lefts.onclick=function(){
+
+				if(m>0){
+					m--;
+					document.getElementById("ul").style.transform = now()+"translateX(+216px)";
+				}else if(m==0){
+					// m=kks.length-1;
+				}
+				var lis=document.getElementById("btns").getElementsByTagName("li");
+				lis[m].onclick();
+			};
+
+
+
+			rights.onclick=function(){
+				if (m<kks.length-1) {
+					
+					m++;
+					document.getElementById("ul").style.transform = now()+"translateX(-216px)";
+
+				}else if (m==kks.length-1) {};
+				var lis=document.getElementById("btns").getElementsByTagName("li");
+				lis[m].onclick();
+
+				
+			}};
+
+
+			function autoplays(){
+				m=m>=(kks.length-1)?0:++m;
+				var lis=document.getElementById("btns").getElementsByTagName("li");
+				lis[m].onclick()
+			};
+
+			function listshow () {
+			// body...
+				document.getElementById('btns').style.opacity = "1" ;
+			}
+
+			function listhide(){
+				document.getElementById('btns').style.opacity = "0";
+			}
+	</script>
+
+
+<div class="page" id="page">
+	<div id="page-pic" class="page-pic1" pid="1">
+ 		<div class="blackpic"  onclick="fullScreen()" onmouseover="over()" onmouseout="finover()">
+			<span>优麒麟壁纸库</span>
+			<h3>当前入库壁纸共248张</h3>
+			<h5>下载壁纸合集(更新)</h5>
+		</div>
+		<div id="cont">
+            <div class="pic" id="pic">
+                <a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;" id="one"><img src="/home/kevin/桌面/page-pic/pic/19.10/green-cluster.jpg"  gid="1" class="img1" /></a>
+                <a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;" id="two"><img src="/home/kevin/桌面/page-pic/pic/19.10/futuristic.jpg"  gid="2" class="img2" ></a>
+                <a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;" id="thr"><img src="/home/kevin/桌面/page-pic/pic/19.10/1910.jpg"  gid="3" class="img3" ></a>
+            </div>
+	        <div class="btn" id="btn">
+	                <li class="on" style="color:rgba(0,0,0,0)">1</li>
+	                <li  style="color:rgba(0,0,0,0)">2</li>
+	                <li  style="color:rgba(0,0,0,0)">3</li>
+	        </div>
+        </div>
+	</div>
+	<div id="page-pic" class="page-pic2" pid="2">
+ 		<div class="blackpic"  onclick="fullScreen()" onmouseover="picstart()" onmouseout="picover()">
+			<span>优麒麟壁纸1910</span>
+			<h3></h3>
+			<h5>下载壁纸合集(更新)</h5>
+		</div>
+		<div id="cont">
+            <div class="pic" id="pic">
+                <a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/green-cluster.jpg"  gid="1" class="img1" /></a>
+                <a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/futuristic.jpg"  gid="2" class="img2" ></a>
+                <a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/1910.jpg"  gid="3" class="img3" ></a>
+            </div>
+	        <div class="btn" id="btn">
+	                <li class="on" style="color:rgba(0,0,0,0)">1</li>
+	                <li  style="color:rgba(0,0,0,0)">2</li>
+	                <li  style="color:rgba(0,0,0,0)">3</li>
+	        </div>
+        </div>		
+	</div>
+	<div id="page-pic" class="page-pic3" pid="3" onclick="fullScreen()">
+	</div>
+	<div id="page-pic" class="page-pic4" pid="4" onclick="fullScreen()">
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div id="view" class="view">
+	<div id="view-close" class="view-close" onclick="exitScreen()">
+		<span class="close"></span>	
+	</div>
+	<div class="view-pic" id="view1">
+		<div id="conts">
+			<div class="imms" id="imms">
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>				
+			</div>
+			<div class="btns" id="btns" onmouseover="listshow()" onmouseout="listhide()">
+				<div class="boxul">
+					<div class="meg">
+						<span>caodi</span>
+						<h5>xinxi</h5>
+						<a href="#">xiazai</a>
+					</div>
+					<ul id="ul">
+						<li class="ons">1</li>
+						<li >2</li>
+						<li >3</li>
+						<li >4</li>
+						<li >5</li>
+						<li >6</li>
+						<li >7</li>
+						<li >8</li>
+						<li >9</li>
+					</ul>
+				</div>
+			</div>   
+			<div id="jiao">
+				<a href="#" id="left" onmouseover="listshow()" onmouseout="listhide()">&lt;</a>
+				<a href="#" id="right" onmouseover="listshow()" onmouseout="listhide()">&gt;</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="view-close" class="view-close" onclick="exitScreen()">
+		<span class="close"></span>	
+	</div>
+	<div class="view-pic" id="view2">
+		<div id="conts">
+			<div class="imms" id="imms">
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>
+				<a style="text-align:center;opacity:1;transition: opacity 0.8s ease 0s;z-index: 9999"><img src="/home/kevin/桌面/page-pic/pic/19.10/beach-down.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/Beijling_park_burial_path_by_Mattias_Andersson.jpg"/></a>
+				<a style="text-align:center;opacity:0;transition: opacity 0.8s ease 0s;"><img src="/home/kevin/桌面/page-pic/pic/19.10/bohai-sea-sunset.jpg"/></a>				
+			</div>
+			<div class="btns" id="btns" onmouseover="listshow()" onmouseout="listhide()">
+				<div class="boxul">
+					<div class="meg">
+						<span>caodi</span>
+						<h5>xinxi</h5>
+						<a href="#">xiazai</a>
+					</div>
+					<ul id="ul">
+						<li class="ons">1</li>
+						<li >2</li>
+						<li >3</li>
+						<li >4</li>
+						<li >5</li>
+						<li >6</li>
+						<li >7</li>
+						<li >8</li>
+						<li >9</li>
+					</ul>
+				</div>
+			</div>   
+			<div id="jiao">
+				<a href="#" id="left" onmouseover="listshow()" onmouseout="listhide()">&lt;</a>
+				<a href="#" id="right" onmouseover="listshow()" onmouseout="listhide()">&gt;</a>
+			</div>
+		</div>
+	</div>
+	
+	<div id="view-close" class="view-close" onclick="exitScreen()">
+		<span class="close"></span>	
+	</div>
+	<div class="view-pic" id="view3">
+	</div>
+	
+	<div id="view-close" class="view-close" onclick="exitScreen()">
+		<span class="close"></span>	
+	</div>	
+	<div class="view-pic" id="view4">
+	</div>	
+</div>
+
+
+
+

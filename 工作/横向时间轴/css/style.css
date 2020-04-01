@@ -1,0 +1,375 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+body {
+  font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+  color: #fff;
+  position: relative;
+}
+
+
+/* .section SECTION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.time-top{
+  background-color: #f6f6f6
+}
+
+.section {
+  background: #F45B69;
+  padding: 10px 0;
+  position: absolute;
+  z-index: 115
+}
+
+.section .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section h1 {
+  font-size: 2.5rem;
+}
+
+.section h2 {
+  font-size: 1.3rem;
+}
+
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.white{
+   width: 100%;
+   height: 80px;
+   background-color: white;
+   position: absolute;
+   z-index: 100;
+}
+.right{
+  width: 50px;
+  height: 100px;
+  background-color:rgba(0,0,0,0);
+  padding-left:800px ;
+  z-index: 120;
+  position:absolute;
+}
+.left{
+  width: 400px;
+  height: 100px;
+  background-color:rgba(0,0,0,0);
+  z-index: 120;
+  position:absolute;
+}
+.timeline {
+  white-space: nowrap;
+  overflow-x: hidden;
+  width: 800px;
+  border-bottom: 5px solid #1E90FF;
+  margin: 0 auto;
+}
+
+.timeline ol {
+  font-size: 0;
+  width: 150vw;
+  padding: 30px;
+  transition: all 1s;
+  height: 220px;
+}
+
+.timeline ol li {
+  position: relative;
+  display: inline-block;
+  list-style-type: none;
+  margin:5px; 
+  width: 2px;
+  height: 18px;
+  background: #999999;
+}
+
+
+.timeline ol li:not(:first-child) {
+  margin-left: 14px;
+}
+
+.timeline ol li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1px);
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+.timeline ol li div {
+  position: absolute;
+  left: calc(100% + 7px);
+  width: 100px;
+  padding: 5px;
+  font-size: 1rem;
+  white-space: normal;
+  color: gray;
+}
+
+
+.timeline ol li div::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: blue
+}
+
+.timeline ol li:nth-child(odd) div {
+  transform: translateY(-60%);
+}
+
+.timeline ol li:nth-child(odd) div::before {
+  top: 100%;
+  border-width: 0px 0px 0 0;
+  border-color: blue transparent transparent transparent;
+}
+.timeline ol li:nth-child(even) div {
+  transform: translateY(-60%);
+}
+/*.timeline ol li:nth-child(even) div {
+  top: calc(100% + 16px);
+}*/
+
+.timeline ol li:nth-child(even) div::before {
+  top: 100%;
+  border-width: 5px  5px 5px 5px ;
+  border-color: #0348B0 transparent transparent transparent ;
+}
+
+
+
+
+
+
+.box{
+  padding: 0 auto;
+  margin: 0 auto;
+  border-top: 3px solid #0348B0;
+  background-color: #E1FFFF;
+  box-shadow:0 1px 5px #000;
+  text-align: center;
+}
+.box a{
+  text-decoration: none;
+  font-family: 微软雅黑;
+  font-size: 20px;
+  color: #70879b;
+}
+.box_nav1,.box_nav2{
+  width: 100px;
+  height: 50px
+}
+
+
+.timeline ol li:nth-child(odd) .box {
+  top: -16px;
+  transform: translateY(70%);
+}
+
+
+.timeline ol li:nth-child(odd) .box ::before {
+  top: 100%;
+  border-width: 0px 0px 0 0;
+  border-color: white transparent transparent transparent;
+}
+
+.timeline ol li:nth-child(even) .box {
+  top: calc(100% + 16px);
+}
+.timeline ol li:nth-child(even) .box {
+  top: 60px;
+  transform: translateY(60%);
+}
+.timeline ol li:nth-child(even) .box::before {
+  top: 100%;
+  border-width: 0px  0px 0 0;
+  border-color: white transparent transparent transparent ;
+}
+
+
+
+
+
+
+
+
+
+.timeline time {
+  margin-left: 8px;
+  font-size: 16px;
+  font-family: 微软雅黑;
+  color: #999999;
+}
+
+
+/* TIMELINE ARROWS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline .arrows {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.timeline .arrows .arrow__prev {
+  margin-right: 20px;
+}
+
+.timeline .disabled {
+  opacity: .5;
+}
+
+.timeline .arrows img {
+  width: 45px;
+  height: 45px;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (max-width: 599px) {
+  .timeline ol,
+  .timeline ol li {
+    width: auto; 
+  }
+  
+  .timeline ol {
+    padding: 0;
+    transform: none !important;
+  }
+  
+  .timeline ol li {
+    display: block;
+    height: auto;
+    background: transparent;
+  }
+  
+  .timeline ol li:first-child {
+    margin-top: 25px;
+  }
+  
+  .timeline ol li:not(:first-child) {
+    margin-left: auto;
+  }
+  
+  .timeline ol li div {
+    width: 94%;
+    height: auto !important;
+    margin: 0 auto 25px;
+  }
+  
+  .timeline ol li div {
+    position: static;
+  }
+  
+  .timeline ol li:nth-child(odd) div {
+    transform: none;
+  }
+  
+  .timeline ol li:nth-child(odd) div::before,
+  .timeline ol li:nth-child(even) div::before {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: none;
+    border-left: 1px solid white;
+    height: 25px;
+  }
+  
+  .timeline ol li:last-child,
+  .timeline ol li:nth-last-child(2) div::before,
+  .timeline ol li:not(:last-child)::after,
+  .timeline .arrows {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+.page-main{
+  width: 900px;
+  height: 100%;
+  margin: 0 auto;
+  color: black;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.page-main h2{
+  text-align: center;
+}
+.page-main-top{
+  width: 800px;
+  height: 300px;
+  margin: 0 auto;
+}
+.page-main-top-left{
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 auto;
+  float: left;
+}
+.page-main-top-left img{
+  width: 480px;
+  height: 300px;
+
+}
+.page-main-top-right{
+  width: 40%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 10px;
+  float: left;
+  text-align: center;
+
+}
+.page-main-top-right button{
+  background-color: #086fc6;
+  color: white;
+  width: 80px;
+  height: 30px;
+
+}
+.page-main-top-right a{
+  color: black;
+}
+.page-main-top-right h1{
+  font-family: 微软雅黑;
+  font-size: 38px;
+  font-weight: normal;
+
+}
+.page-img{
+  text-align: center;
+  padding: 20px;
+}
